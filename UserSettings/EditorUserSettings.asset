@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!162 &1
 EditorUserSettings:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 0 
   serializedVersion: 4
   m_ConfigSettings:
     vcSharedLogLevel:
