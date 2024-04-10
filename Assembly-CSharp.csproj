@@ -60,6 +60,7 @@
     <Compile Include="Assets\Game\BallAI.cs" />
     <Compile Include="Assets\Game\CylinderCollider.cs" />
     <Compile Include="Assets\Constants.cs" />
+    <Compile Include="Assets\OpenGame\OptionsScript.cs" />
     <Compile Include="Assets\Game\PlayerBall2.cs" />
     <Compile Include="Assets\Game\PlayerBall1.cs" />
     <Compile Include="Assets\Game\PlatformScript.cs" />
@@ -68,7 +69,7 @@
     <Compile Include="Assets\OpenGame\GameManager.cs" />
     <Compile Include="Assets\Game\PlayerBall3.cs" />
     <Compile Include="Assets\Game\SpawnBalls.cs" />
-    <Compile Include="Assets\OpenGame\OptionsScript.cs" />
+    <Compile Include="Assets\Game\GameOver.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Unity/Jocuri Unity/Sumo Ball/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

@@ -15,14 +15,25 @@ public class OptionsScript : MonoBehaviour
         {
             PlayerPrefs.SetInt("NotFirstTime", 1);
             for (int i = 0; i < toggles.Length; ++i)
+            {
                 PlayerPrefs.SetInt(i.ToString(), -1);
+                PlayerPrefs.SetInt(i + "wins", 0);
+            }
             PlayerPrefs.Save();
         }
 
         for(int i = 0; i < toggles.Length; ++i)
         {
             int index = i;
-            toggles[index].isOn = PlayerPrefs.GetInt(index.ToString()) != -1;
+            int spriteIndex = PlayerPrefs.GetInt(index.ToString());
+            if (spriteIndex != -1)
+            {
+                toggles[index].isOn = true;
+                images[index].enabled = true;
+                images[index].sprite = sprites[spriteIndex];
+                images[index].material = images[index].defaultMaterial;
+            }
+
             toggles[index].onValueChanged.AddListener(isOn =>
             {
                 if (isOn)

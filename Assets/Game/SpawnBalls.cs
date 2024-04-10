@@ -36,15 +36,14 @@ public class SpawnBalls : MonoBehaviour
             float y = centerPosition.y + platform.transform.localScale.y + ballScale + 0.1f;
             float z = centerPosition.z + Mathf.Sin(angle * Mathf.Deg2Rad) * radius;
 
-            // Spawn sphere at calculated position
-            GameObject newSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            newSphere.gameObject.AddComponent<Rigidbody>();
-            newSphere.transform.position = new Vector3(x, y, z);
-            newSphere.transform.localScale = new Vector3(ballScale, ballScale, ballScale); // Set scale as needed
-
             int materialIndex = PlayerPrefs.GetInt(i.ToString());
             if(materialIndex != -1)
             {
+                // Spawn sphere at calculated position
+                GameObject newSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                newSphere.gameObject.AddComponent<Rigidbody>();
+                newSphere.transform.position = new Vector3(x, y, z);
+                newSphere.transform.localScale = new Vector3(ballScale, ballScale, ballScale); // Set scale as needed
                 Debug.Log("Spawn");
                 if (i == 0)
                 {
@@ -52,7 +51,6 @@ public class SpawnBalls : MonoBehaviour
                     newSphere.gameObject.tag = "Player1";
                     MeshRenderer renderer = newSphere.GetComponent<MeshRenderer>();
                     renderer.material = materials[materialIndex];
-                    Debug.Log("Player1");
                 }
                 else if (i == 1)
                 {
@@ -60,7 +58,6 @@ public class SpawnBalls : MonoBehaviour
                     newSphere.gameObject.tag = "Player2";
                     MeshRenderer renderer = newSphere.GetComponent<MeshRenderer>();
                     renderer.material = materials[materialIndex];
-                    Debug.Log("Player2");
                 }
                 else if (i == 2)
                 {
@@ -68,7 +65,6 @@ public class SpawnBalls : MonoBehaviour
                     newSphere.gameObject.tag = "Player3";
                     MeshRenderer renderer = newSphere.GetComponent<MeshRenderer>();
                     renderer.material = materials[materialIndex];
-                    Debug.Log("Player3");
                 }
                 else
                 {
@@ -76,7 +72,6 @@ public class SpawnBalls : MonoBehaviour
                     newSphere.gameObject.tag = "Bot" + (i - 2);
                     MeshRenderer renderer = newSphere.GetComponent<MeshRenderer>();
                     renderer.material = materials[materialIndex];
-                    Debug.Log("Bot" + (i-2));
                 }
             }
         }
@@ -90,7 +85,6 @@ public class SpawnBalls : MonoBehaviour
             if (PlayerPrefs.GetInt(i.ToString()) != -1)
                 ++count;
         }
-        Debug.Log(count);
         return count;
     }
 }
