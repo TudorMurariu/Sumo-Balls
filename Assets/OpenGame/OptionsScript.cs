@@ -22,7 +22,7 @@ public class OptionsScript : MonoBehaviour
         for(int i = 0; i < toggles.Length; ++i)
         {
             int index = i;
-
+            toggles[index].isOn = PlayerPrefs.GetInt(index.ToString()) != -1;
             toggles[index].onValueChanged.AddListener(isOn =>
             {
                 if (isOn)
