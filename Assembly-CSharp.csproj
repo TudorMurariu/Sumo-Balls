@@ -68,6 +68,7 @@
     <Compile Include="Assets\OpenGame\GameManager.cs" />
     <Compile Include="Assets\Game\PlayerBall3.cs" />
     <Compile Include="Assets\Game\SpawnBalls.cs" />
+    <Compile Include="Assets\OpenGame\OptionsScript.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Unity/Jocuri Unity/Sumo Ball/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

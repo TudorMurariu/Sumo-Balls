@@ -5,10 +5,7 @@ using UnityEngine;
 public class SpawnBalls : MonoBehaviour
 {
     public GameObject platform;
-    public int numberOfEntities = 5; // Number of entities to spawn
-    public int pozitionOfP1 = -1;
-    public int pozitionOfP2 = -1;
-    public int pozitionOfP3 = -1;
+    public Material[] materials;
 
     private float radius = 1f; // Radius of the circle
 
@@ -27,10 +24,10 @@ public class SpawnBalls : MonoBehaviour
     void SpawnEntities()
     {
         Vector3 centerPosition = Vector3.zero; //platform.transform.position;
-        float angleStep = 360f / numberOfEntities; // Angle between each entity
+        float angleStep = 360f / CountPlayers(); // Angle between each entity
         float ballScale = 1f;
 
-        for (int i = 0; i < numberOfEntities; i++)
+        for (int i = 0; i < Constants.maxNumberOfPlayers; i++)
         {
             float angle = i * angleStep; // Calculate angle for this entity
 
@@ -45,26 +42,55 @@ public class SpawnBalls : MonoBehaviour
             newSphere.transform.position = new Vector3(x, y, z);
             newSphere.transform.localScale = new Vector3(ballScale, ballScale, ballScale); // Set scale as needed
 
-            if (i == pozitionOfP1)
+            int materialIndex = PlayerPrefs.GetInt(i.ToString());
+            if(materialIndex != -1)
             {
-                newSphere.gameObject.AddComponent<PlayerBall1>();
-                newSphere.gameObject.tag = "Player1";
-            }
-            else if (i == pozitionOfP2)
-            {
-                newSphere.gameObject.AddComponent<PlayerBall2>();
-                newSphere.gameObject.tag = "Player2";
-            }
-            else if (i == pozitionOfP3)
-            {
-                newSphere.gameObject.AddComponent<PlayerBall3>();
-                newSphere.gameObject.tag = "Player3";
-            }
-            else
-            {
-                newSphere.gameObject.AddComponent<BallAI>();
-                newSphere.gameObject.tag = "Bot" + i;
+                Debug.Log("Spawn");
+                if (i == 0)
+                {
+                    newSphere.gameObject.AddComponent<PlayerBall1>();
+                    newSphere.gameObject.tag = "Player1";
+                    MeshRenderer renderer = newSphere.GetComponent<MeshRenderer>();
+                    renderer.material = materials[materialIndex];
+                    Debug.Log("Player1");
+                }
+                else if (i == 1)
+                {
+                    newSphere.gameObject.AddComponent<PlayerBall2>();
+                    newSphere.gameObject.tag = "Player2";
+                    MeshRenderer renderer = newSphere.GetComponent<MeshRenderer>();
+                    renderer.material = materials[materialIndex];
+                    Debug.Log("Player2");
+                }
+                else if (i == 2)
+                {
+                    newSphere.gameObject.AddComponent<PlayerBall3>();
+                    newSphere.gameObject.tag = "Player3";
+                    MeshRenderer renderer = newSphere.GetComponent<MeshRenderer>();
+                    renderer.material = materials[materialIndex];
+                    Debug.Log("Player3");
+                }
+                else
+                {
+                    newSphere.gameObject.AddComponent<BallAI>();
+                    newSphere.gameObject.tag = "Bot" + (i - 2);
+                    MeshRenderer renderer = newSphere.GetComponent<MeshRenderer>();
+                    renderer.material = materials[materialIndex];
+                    Debug.Log("Bot" + (i-2));
+                }
             }
         }
+    }
+
+    private int CountPlayers()
+    {
+        int count = 0;
+        for (int i = 0; i < Constants.maxNumberOfPlayers; i++)
+        {
+            if (PlayerPrefs.GetInt(i.ToString()) != -1)
+                ++count;
+        }
+        Debug.Log(count);
+        return count;
     }
 }

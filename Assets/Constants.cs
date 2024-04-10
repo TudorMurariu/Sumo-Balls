@@ -1,7 +1,9 @@
 ﻿public static class Constants
 {
+    // game
+    public const int maxNumberOfPlayers = 6;
     // player
-    public const float playerForce = 0.5f;
+    public const float playerForce = 0.4f;
 
     // platform
     public const float shrinkPlatformInterval = 2f;
