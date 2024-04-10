@@ -14,7 +14,7 @@ public class LavaScript : MonoBehaviour
         Text.text = "Winner: " + IndexToTag(lastAlive);
         Debug.Log("End game");
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
 
         GameOver.EndGame(lastAlive);
     }
@@ -42,10 +42,8 @@ public class LavaScript : MonoBehaviour
         if(CheckGameOver())
         {
             int lastAlive = LastAlive();
-/*            // if there was only 1 player in the game
-            if (lastAlive == -1)
-                lastAlive = index;*/
-            StartCoroutine(EndGame(lastAlive));
+            if (lastAlive != -1)
+                StartCoroutine(EndGame(lastAlive));
         }
     }
 
